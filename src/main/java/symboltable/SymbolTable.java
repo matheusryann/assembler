@@ -25,9 +25,8 @@ public class SymbolTable {
         symbols.put("KBD", 24576);
     }
 
-    // TODO: commit 3
     public void addEntry(String symbol, int address) {
-        throw new UnsupportedOperationException("TODO: implementar addEntry (commit 3)");
+        symbols.put(symbol, address);
     }
 
     // TODO: commit 4

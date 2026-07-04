@@ -43,18 +43,27 @@ class SymbolTableTest {
         assertEquals(24576, table.getAddress("KBD"));
     }
 
-    // --- commit 3 (B) ---
+    // --- commit 3 ---
 
-    @Disabled("commit 3")
     @Test
     void shouldAddLabelEntry() {
-        // addEntry("LOOP", 6) → getAddress("LOOP") == 6
+        table.addEntry("LOOP", 6);
+        assertEquals(6, table.getAddress("LOOP"));
+
+        table.addEntry("END", 20);
+        assertEquals(20, table.getAddress("END"));
     }
 
-    @Disabled("commit 3")
     @Test
     void shouldReturnNullForUnknownSymbol() {
         assertNull(table.getAddress("INEXISTENTE"));
+    }
+
+    @Test
+    void shouldOverwriteLabelEntry() {
+        table.addEntry("LOOP", 6);
+        table.addEntry("LOOP", 10);
+        assertEquals(10, table.getAddress("LOOP"));
     }
 
     // --- commit 4 (A) ---

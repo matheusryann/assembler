@@ -37,7 +37,7 @@ Detalhes de execução: [`TESTES-NAND2TETRIS.md`](TESTES-NAND2TETRIS.md)
 |---|-------------|--------|-------------------------------|--------|
 | 1 | A | Estrutura Maven | `mvn compile` | ✅ |
 | 2 | B | SymbolTable — predefinidos | `SymbolTableTest` (registradores, VM, I/O) | ✅ |
-| 3 | B | SymbolTable — `addEntry` / labels | `shouldAddLabelEntry`, `shouldReturnNullForUnknown` | ⬜ |
+| 3 | B | SymbolTable — `addEntry` / labels | `shouldAddLabelEntry`, `shouldReturnNullForUnknown` | ✅ |
 | 4 | A | SymbolTable — `contains` / `addVariable` | `shouldAllocateVariablesFrom16` | ⬜ |
 | 5 | A | Parser — leitura e comentários | `shouldStripComments`, `shouldSkipBlankLines` | ⬜ |
 | 6 | A | Parser — `advance` / `hasMoreInstructions` | `shouldAdvanceAndDetectEnd` | ⬜ |
@@ -95,7 +95,7 @@ Detalhes de execução: [`TESTES-NAND2TETRIS.md`](TESTES-NAND2TETRIS.md)
 | Testes | `shouldAddLabelEntry`, `shouldReturnNullForUnknownSymbol` |
 | Validar | `mvn test -Dtest=SymbolTableTest#shouldAdd*` |
 
-⬜
+✅ Concluído
 
 ---
 
