@@ -11,6 +11,7 @@ import java.util.Map;
 public class SymbolTable {
 
     private final Map<String, Integer> symbols = new HashMap<>();
+    private int nextVariableAddress = 16;
 
     public SymbolTable() {
         for (int i = 0; i <= 15; i++) {
@@ -29,17 +30,25 @@ public class SymbolTable {
         symbols.put(symbol, address);
     }
 
-    // TODO: commit 4
     public boolean contains(String symbol) {
-        throw new UnsupportedOperationException("TODO: implementar contains (commit 4)");
+        return symbols.containsKey(symbol);
     }
 
     public Integer getAddress(String symbol) {
         return symbols.get(symbol);
     }
 
-    // TODO: commit 4
+    /**
+     * Aloca endereço de RAM para variável user-defined (16, 17, 18…).
+     * Se o símbolo já existir, devolve o endereço existente.
+     */
     public int addVariable(String symbol) {
-        throw new UnsupportedOperationException("TODO: implementar addVariable (commit 4)");
+        if (symbols.containsKey(symbol)) {
+            return symbols.get(symbol);
+        }
+        int address = nextVariableAddress;
+        symbols.put(symbol, address);
+        nextVariableAddress++;
+        return address;
     }
 }

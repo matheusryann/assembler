@@ -47,6 +47,23 @@ mvn package
 java -jar target/assembler-1.0.0.jar programa.asm
 ```
 
-## Vídeo
+## Documentação
 
-**Link:** [inserir após gravar]
+- [Checklist de commits (22 commits)](docs/CHECKLIST.md)
+- [Guia teórico](docs/GUIA-MONTADOR.md)
+- [Testes Nand2Tetris Project 06](docs/TESTES-NAND2TETRIS.md)
+
+## Testes oficiais
+
+Pacote local:
+
+```
+D:\Downloads\nand2tetris\nand2tetris\projects\6\
+```
+
+| Arquivo | Prioridade |
+|---------|------------|
+| `add/Add.asm`, `max/Max.asm` | Obrigatório |
+| `max/MaxL.asm` | Labels |
+| `rect/Rect.asm` | Recomendado |
+| `pong/Pong.asm` | Opcional |

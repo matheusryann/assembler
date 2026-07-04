@@ -1,11 +1,12 @@
 package symboltable;
 
 import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNull;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 /**
  * Testes unitários — um método por commit (ver docs/CHECKLIST.md).
@@ -19,7 +20,7 @@ class SymbolTableTest {
         table = new SymbolTable();
     }
 
-    // --- commit 2 (B) ---
+    // --- commit 2 ---
 
     @Test
     void shouldInitializeRegisters() {
@@ -66,23 +67,36 @@ class SymbolTableTest {
         assertEquals(10, table.getAddress("LOOP"));
     }
 
-    // --- commit 4 (A) ---
+    // --- commit 4 ---
 
-    @Disabled("commit 4")
     @Test
     void shouldAllocateVariablesStartingAt16() {
-        // addVariable("i") → 16, addVariable("sum") → 17
+        assertEquals(16, table.addVariable("i"));
+        assertEquals(17, table.addVariable("sum"));
+        assertEquals(18, table.addVariable("counter"));
+
+        assertEquals(16, table.getAddress("i"));
+        assertEquals(17, table.getAddress("sum"));
     }
 
-    @Disabled("commit 4")
     @Test
     void shouldReuseExistingVariable() {
-        // addVariable("i") duas vezes → mesmo endereço
+        assertEquals(16, table.addVariable("i"));
+        assertEquals(16, table.addVariable("i"));
+        assertEquals(17, table.addVariable("sum"));
     }
 
-    @Disabled("commit 4")
     @Test
     void shouldReportContains() {
-        // contains("LOOP") após addEntry
+        assertFalse(table.contains("LOOP"));
+        assertTrue(table.contains("R0"));
+        assertTrue(table.contains("SCREEN"));
+
+        table.addEntry("LOOP", 6);
+        assertTrue(table.contains("LOOP"));
+
+        table.addVariable("i");
+        assertTrue(table.contains("i"));
+        assertFalse(table.contains("naoExiste"));
     }
 }
