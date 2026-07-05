@@ -54,7 +54,13 @@ public class Parser {
     }
 
     public InstructionType instructionType() {
-        throw new UnsupportedOperationException("TODO: implementar instructionType");
+        if (currentCommand.startsWith("@")) {
+            return InstructionType.A_INSTRUCTION;
+        }
+        if (currentCommand.startsWith("(") && currentCommand.endsWith(")")) {
+            return InstructionType.LABEL;
+        }
+        return InstructionType.C_INSTRUCTION;
     }
 
     public String symbol() {

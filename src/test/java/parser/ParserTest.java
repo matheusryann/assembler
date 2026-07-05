@@ -81,22 +81,34 @@ class ParserTest {
 
     // --- commit 7 (B) ---
 
-    @Disabled("commit 7")
     @Test
-    void shouldDetectAInstruction() {
-        // "@10" → A_INSTRUCTION
+    void shouldDetectAInstruction(@TempDir Path tempDir) throws IOException {
+        Path asm = tempDir.resolve("a.asm");
+        Files.writeString(asm, "@10\n");
+
+        Parser parser = new Parser(asm);
+        parser.advance();
+        assertEquals(Parser.InstructionType.A_INSTRUCTION, parser.instructionType());
     }
 
-    @Disabled("commit 7")
     @Test
-    void shouldDetectCInstruction() {
-        // "D=M" → C_INSTRUCTION
+    void shouldDetectCInstruction(@TempDir Path tempDir) throws IOException {
+        Path asm = tempDir.resolve("c.asm");
+        Files.writeString(asm, "D=M\n");
+
+        Parser parser = new Parser(asm);
+        parser.advance();
+        assertEquals(Parser.InstructionType.C_INSTRUCTION, parser.instructionType());
     }
 
-    @Disabled("commit 7")
     @Test
-    void shouldDetectLabel() {
-        // "(LOOP)" → LABEL
+    void shouldDetectLabel(@TempDir Path tempDir) throws IOException {
+        Path asm = tempDir.resolve("label.asm");
+        Files.writeString(asm, "(LOOP)\n");
+
+        Parser parser = new Parser(asm);
+        parser.advance();
+        assertEquals(Parser.InstructionType.LABEL, parser.instructionType());
     }
 
     // --- commit 8 (B) ---

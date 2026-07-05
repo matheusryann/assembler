@@ -41,7 +41,7 @@ Detalhes de execução: [`TESTES-NAND2TETRIS.md`](TESTES-NAND2TETRIS.md)
 | 4 | A | SymbolTable — `contains` / `addVariable` | `shouldAllocateVariablesFrom16` | ✅ |
 | 5 | A | Parser — leitura e comentários | `shouldStripComments`, `shouldSkipBlankLines` | ✅ |
 | 6 | A | Parser — `advance` / `hasMoreInstructions` | `shouldAdvanceAndDetectEnd` | ✅ |
-| 7 | B | Parser — `instructionType` | `shouldDetectA`, `shouldDetectC`, `shouldDetectLabel` | ⬜ |
+| 7 | B | Parser — `instructionType` | `shouldDetectA`, `shouldDetectC`, `shouldDetectLabel` | ✅ |
 | 8 | B | Parser — `symbol()` | `shouldExtractAAndLabelSymbols` | ⬜ |
 | 9 | B | Parser — `dest` / `comp` / `jump` | `shouldParseCInstructionParts` | ⬜ |
 | 10 | A | Code — tabela `comp` | `CodeTest` → `shouldEncodeComp` | ⬜ |
@@ -143,7 +143,7 @@ Detalhes de execução: [`TESTES-NAND2TETRIS.md`](TESTES-NAND2TETRIS.md)
 | Testes | `shouldDetectAInstruction`, `shouldDetectCInstruction`, `shouldDetectLabel` |
 | Validar | `mvn test -Dtest=ParserTest#shouldDetect*` |
 
-⬜
+✅ Concluído
 
 ---
 
