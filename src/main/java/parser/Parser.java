@@ -1,7 +1,10 @@
 package parser;
 
 import java.io.IOException;
+import java.nio.file.Files;
 import java.nio.file.Path;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Analisador de arquivos .asm.
@@ -16,18 +19,38 @@ public class Parser {
         LABEL
     }
 
-    // TODO: implementar (commits 3 e 4)
+    private final List<String> commands;
+    private int currentIndex = -1;
+    private String currentCommand = "";
 
     public Parser(Path filename) throws IOException {
-        throw new UnsupportedOperationException("TODO: implementar construtor");
+        commands = new ArrayList<>();
+        for (String line : Files.readAllLines(filename)) {
+            String cleaned = cleanLine(line);
+            if (!cleaned.isEmpty()) {
+                commands.add(cleaned);
+            }
+        }
+    }
+
+    private static String cleanLine(String line) {
+        int commentIndex = line.indexOf("//");
+        if (commentIndex >= 0) {
+            line = line.substring(0, commentIndex);
+        }
+        return line.trim();
     }
 
     public boolean hasMoreInstructions() {
-        throw new UnsupportedOperationException("TODO: implementar hasMoreInstructions");
+        return currentIndex + 1 < commands.size();
     }
 
     public void advance() {
-        throw new UnsupportedOperationException("TODO: implementar advance");
+        if (!hasMoreInstructions()) {
+            throw new IllegalStateException("No more instructions");
+        }
+        currentIndex++;
+        currentCommand = commands.get(currentIndex);
     }
 
     public InstructionType instructionType() {
@@ -35,7 +58,10 @@ public class Parser {
     }
 
     public String symbol() {
-        throw new UnsupportedOperationException("TODO: implementar symbol");
+        if (!currentCommand.startsWith("@")) {
+            throw new UnsupportedOperationException("TODO: implementar symbol para labels");
+        }
+        return currentCommand.substring(1);
     }
 
     public String dest() {

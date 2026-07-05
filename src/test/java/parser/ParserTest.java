@@ -2,6 +2,15 @@ package parser;
 
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.io.TempDir;
+
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 /**
  * Testes unitários — um método por commit (ver docs/CHECKLIST.md).
@@ -10,22 +19,37 @@ class ParserTest {
 
     // --- commit 5 (A) ---
 
-    @Disabled("commit 5")
     @Test
-    void shouldStripInlineComments() {
-        // "@2 // addr" → instrução "@2"
+    void shouldStripInlineComments(@TempDir Path tempDir) throws IOException {
+        Path asm = tempDir.resolve("inline.asm");
+        Files.writeString(asm, "@2 // addr\n");
+
+        Parser parser = new Parser(asm);
+        assertTrue(parser.hasMoreInstructions());
+        parser.advance();
+        assertEquals("2", parser.symbol());
+        assertFalse(parser.hasMoreInstructions());
     }
 
-    @Disabled("commit 5")
     @Test
-    void shouldSkipBlankLines() {
-        // linhas vazias ignoradas
+    void shouldSkipBlankLines(@TempDir Path tempDir) throws IOException {
+        Path asm = tempDir.resolve("blank.asm");
+        Files.writeString(asm, "@0\n\n   \nD=M\n");
+
+        Parser parser = new Parser(asm);
+        parser.advance();
+        assertEquals("0", parser.symbol());
+        parser.advance();
+        assertFalse(parser.hasMoreInstructions());
     }
 
-    @Disabled("commit 5")
     @Test
-    void shouldSkipFullLineComments() {
-        // "// comentário" ignorado
+    void shouldSkipFullLineComments(@TempDir Path tempDir) throws IOException {
+        Path asm = tempDir.resolve("comments.asm");
+        Files.writeString(asm, "// comentário\n// outro\n");
+
+        Parser parser = new Parser(asm);
+        assertFalse(parser.hasMoreInstructions());
     }
 
     // --- commit 6 (A) ---
