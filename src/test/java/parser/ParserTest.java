@@ -54,16 +54,29 @@ class ParserTest {
 
     // --- commit 6 (A) ---
 
-    @Disabled("commit 6")
     @Test
-    void shouldAdvanceThroughInstructions() {
-        // advance() percorre N instruções
+    void shouldAdvanceThroughInstructions(@TempDir Path tempDir) throws IOException {
+        Path asm = tempDir.resolve("program.asm");
+        Files.writeString(asm, "@0\nD=M\n@1\nD=D+M\n@2\nM=D\n");
+
+        Parser parser = new Parser(asm);
+        int count = 0;
+        while (parser.hasMoreInstructions()) {
+            parser.advance();
+            count++;
+        }
+        assertEquals(6, count);
     }
 
-    @Disabled("commit 6")
     @Test
-    void shouldDetectEndOfFile() {
-        // hasMoreInstructions() false no fim
+    void shouldDetectEndOfFile(@TempDir Path tempDir) throws IOException {
+        Path asm = tempDir.resolve("single.asm");
+        Files.writeString(asm, "D=M\n");
+
+        Parser parser = new Parser(asm);
+        assertTrue(parser.hasMoreInstructions());
+        parser.advance();
+        assertFalse(parser.hasMoreInstructions());
     }
 
     // --- commit 7 (B) ---
