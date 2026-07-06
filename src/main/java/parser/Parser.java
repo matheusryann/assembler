@@ -74,14 +74,32 @@ public class Parser {
     }
 
     public String dest() {
-        throw new UnsupportedOperationException("TODO: implementar dest");
+        String destComp = destCompPart();
+        int equalsIndex = destComp.indexOf('=');
+        if (equalsIndex == -1) {
+            return "";
+        }
+        return destComp.substring(0, equalsIndex);
     }
 
     public String comp() {
-        throw new UnsupportedOperationException("TODO: implementar comp");
+        String destComp = destCompPart();
+        int equalsIndex = destComp.indexOf('=');
+        if (equalsIndex == -1) {
+            return destComp;
+        }
+        return destComp.substring(equalsIndex + 1);
     }
 
     public String jump() {
-        throw new UnsupportedOperationException("TODO: implementar jump");
+        String[] parts = currentCommand.split(";", -1);
+        if (parts.length < 2) {
+            return "";
+        }
+        return parts[1];
+    }
+
+    private String destCompPart() {
+        return currentCommand.split(";", -1)[0];
     }
 }

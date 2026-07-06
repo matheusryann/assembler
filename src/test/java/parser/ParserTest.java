@@ -1,6 +1,5 @@
 package parser;
 
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
 
@@ -137,21 +136,39 @@ class ParserTest {
 
     // --- commit 9 (B) ---
 
-    @Disabled("commit 9")
     @Test
-    void shouldParseDestComp() {
-        // "D=M" → dest=D, comp=M, jump=""
+    void shouldParseDestComp(@TempDir Path tempDir) throws IOException {
+        Path asm = tempDir.resolve("dest-comp.asm");
+        Files.writeString(asm, "D=M\n");
+
+        Parser parser = new Parser(asm);
+        parser.advance();
+        assertEquals("D", parser.dest());
+        assertEquals("M", parser.comp());
+        assertEquals("", parser.jump());
     }
 
-    @Disabled("commit 9")
     @Test
-    void shouldParseCompJumpOnly() {
-        // "D;JGT" → dest="", comp=D, jump=JGT
+    void shouldParseCompJumpOnly(@TempDir Path tempDir) throws IOException {
+        Path asm = tempDir.resolve("comp-jump.asm");
+        Files.writeString(asm, "D;JGT\n");
+
+        Parser parser = new Parser(asm);
+        parser.advance();
+        assertEquals("", parser.dest());
+        assertEquals("D", parser.comp());
+        assertEquals("JGT", parser.jump());
     }
 
-    @Disabled("commit 9")
     @Test
-    void shouldParseDestCompJump() {
-        // "AMD=M+1;JMP"
+    void shouldParseDestCompJump(@TempDir Path tempDir) throws IOException {
+        Path asm = tempDir.resolve("full-c.asm");
+        Files.writeString(asm, "AMD=M+1;JMP\n");
+
+        Parser parser = new Parser(asm);
+        parser.advance();
+        assertEquals("AMD", parser.dest());
+        assertEquals("M+1", parser.comp());
+        assertEquals("JMP", parser.jump());
     }
 }
