@@ -42,7 +42,7 @@ Detalhes de execução: [`TESTES-NAND2TETRIS.md`](TESTES-NAND2TETRIS.md)
 | 5 | A | Parser — leitura e comentários | `shouldStripComments`, `shouldSkipBlankLines` | ✅ |
 | 6 | A | Parser — `advance` / `hasMoreInstructions` | `shouldAdvanceAndDetectEnd` | ✅ |
 | 7 | B | Parser — `instructionType` | `shouldDetectA`, `shouldDetectC`, `shouldDetectLabel` | ✅ |
-| 8 | B | Parser — `symbol()` | `shouldExtractAAndLabelSymbols` | ⬜ |
+| 8 | B | Parser — `symbol()` | `shouldExtractAAndLabelSymbols` | ✅ |
 | 9 | B | Parser — `dest` / `comp` / `jump` | `shouldParseCInstructionParts` | ⬜ |
 | 10 | A | Code — tabela `comp` | `CodeTest` → `shouldEncodeComp` | ⬜ |
 | 11 | A | Code — tabelas `dest` e `jump` | `shouldEncodeDest`, `shouldEncodeJump` | ⬜ |
@@ -155,7 +155,7 @@ Detalhes de execução: [`TESTES-NAND2TETRIS.md`](TESTES-NAND2TETRIS.md)
 | Testes | `shouldExtractSymbolFromAInstruction`, `shouldExtractSymbolFromLabel` |
 | Validar | `mvn test -Dtest=ParserTest#shouldExtract*` |
 
-⬜
+✅ Concluído
 
 ---
 

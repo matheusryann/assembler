@@ -113,16 +113,26 @@ class ParserTest {
 
     // --- commit 8 (B) ---
 
-    @Disabled("commit 8")
     @Test
-    void shouldExtractSymbolFromAInstruction() {
-        // "@10" → "10", "@SCREEN" → "SCREEN"
+    void shouldExtractSymbolFromAInstruction(@TempDir Path tempDir) throws IOException {
+        Path asm = tempDir.resolve("symbols.asm");
+        Files.writeString(asm, "@10\n@SCREEN\n");
+
+        Parser parser = new Parser(asm);
+        parser.advance();
+        assertEquals("10", parser.symbol());
+        parser.advance();
+        assertEquals("SCREEN", parser.symbol());
     }
 
-    @Disabled("commit 8")
     @Test
-    void shouldExtractSymbolFromLabel() {
-        // "(LOOP)" → "LOOP"
+    void shouldExtractSymbolFromLabel(@TempDir Path tempDir) throws IOException {
+        Path asm = tempDir.resolve("label.asm");
+        Files.writeString(asm, "(LOOP)\n");
+
+        Parser parser = new Parser(asm);
+        parser.advance();
+        assertEquals("LOOP", parser.symbol());
     }
 
     // --- commit 9 (B) ---

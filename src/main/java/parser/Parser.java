@@ -64,10 +64,13 @@ public class Parser {
     }
 
     public String symbol() {
-        if (!currentCommand.startsWith("@")) {
-            throw new UnsupportedOperationException("TODO: implementar symbol para labels");
+        if (currentCommand.startsWith("@")) {
+            return currentCommand.substring(1);
         }
-        return currentCommand.substring(1);
+        if (currentCommand.startsWith("(") && currentCommand.endsWith(")")) {
+            return currentCommand.substring(1, currentCommand.length() - 1);
+        }
+        throw new IllegalStateException("symbol() só se aplica a A-instructions e labels");
     }
 
     public String dest() {
