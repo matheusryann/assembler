@@ -44,7 +44,7 @@ Detalhes de execução: [`TESTES-NAND2TETRIS.md`](TESTES-NAND2TETRIS.md)
 | 7 | B | Parser — `instructionType` | `shouldDetectA`, `shouldDetectC`, `shouldDetectLabel` | ✅ |
 | 8 | B | Parser — `symbol()` | `shouldExtractAAndLabelSymbols` | ✅ |
 | 9 | B | Parser — `dest` / `comp` / `jump` | `shouldParseCInstructionParts` | ✅ |
-| 10 | A | Code — tabela `comp` | `CodeTest` → `shouldEncodeComp` | ⬜ |
+| 10 | A | Code — tabela `comp` | `CodeTest` → `shouldEncodeComp` | ✅ |
 | 11 | A | Code — tabelas `dest` e `jump` | `shouldEncodeDest`, `shouldEncodeJump` | ⬜ |
 | 12 | B | Code — `encodeAInstruction` (números) | `shouldEncodeNumericA` | ⬜ |
 | 13 | B | Code — `encodeAInstruction` (símbolos) | `shouldEncodePredefinedAndVariable` | ⬜ |
@@ -180,7 +180,7 @@ Detalhes de execução: [`TESTES-NAND2TETRIS.md`](TESTES-NAND2TETRIS.md)
 | Testes | `shouldEncodeCompZero`, `shouldEncodeCompWithM`, `shouldEncodeCompArithmetic` |
 | Validar | `mvn test -Dtest=CodeTest#shouldEncodeComp*` |
 
-⬜
+✅ Concluído
 
 ---
 

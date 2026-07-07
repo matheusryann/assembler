@@ -3,6 +3,8 @@ package code;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
 /**
  * Testes unitários — um método por commit (ver docs/CHECKLIST.md).
  */
@@ -10,22 +12,31 @@ class CodeTest {
 
     // --- commit 10 (A) ---
 
-    @Disabled("commit 10")
     @Test
     void shouldEncodeCompZero() {
-        // comp("0") → "0101010"
+        assertEquals("0101010", Code.comp("0"));
+        assertEquals("0111111", Code.comp("1"));
+        assertEquals("0111010", Code.comp("-1"));
     }
 
-    @Disabled("commit 10")
     @Test
     void shouldEncodeCompWithM() {
-        // comp("M") → "1110000", comp("D+M") → "1000010"
+        assertEquals("1110000", Code.comp("M"));
+        assertEquals("1000010", Code.comp("D+M"));
+        assertEquals("1010011", Code.comp("D-M"));
+        assertEquals("1000000", Code.comp("D&M"));
+        assertEquals("1010101", Code.comp("D|M"));
     }
 
-    @Disabled("commit 10")
     @Test
     void shouldEncodeCompArithmetic() {
-        // comp("D+A"), comp("D-A"), comp("D|A"), etc.
+        assertEquals("0000010", Code.comp("D+A"));
+        assertEquals("0010011", Code.comp("D-A"));
+        assertEquals("0010101", Code.comp("D|A"));
+        assertEquals("0000000", Code.comp("D&A"));
+        assertEquals("0011111", Code.comp("D+1"));
+        assertEquals("0001110", Code.comp("D-1"));
+        assertEquals("0001101", Code.comp("!D"));
     }
 
     // --- commit 11 (A) ---
