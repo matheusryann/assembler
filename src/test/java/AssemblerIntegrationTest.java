@@ -74,10 +74,16 @@ class AssemblerIntegrationTest {
 
     // --- commit 20 (B) ---
 
-    @Disabled("commit 20")
     @Test
-    void shouldAssembleRect() {
-        // projects/6/rect/Rect.asm
+    void shouldAssembleRect(@TempDir Path tempDir) throws IOException {
+        Path asmFile = copyProgramToTemp(tempDir, "Rect.asm", NAND2TETRIS_PROJECT6.resolve("rect/Rect.asm"),
+                Path.of("nand2tetris/projects/6/rect/Rect.asm"));
+        Path hackFile = tempDir.resolve("Rect.hack");
+
+        Main.assemble(asmFile);
+
+        assertTrue(Files.exists(hackFile));
+        assertEquals(expectedRectBinary(), Files.readAllLines(hackFile));
     }
 
     @Disabled("commit 20 — opcional")
@@ -111,6 +117,36 @@ class AssemblerIntegrationTest {
                 "0000000000000010",
                 "1110001100001000",
                 "0000000000001110",
+                "1110101010000111"
+        );
+    }
+
+    private static List<String> expectedRectBinary() {
+        return List.of(
+                "0000000000000000",
+                "1111110000010000",
+                "0000000000010111",
+                "1110001100000110",
+                "0000000000010000",
+                "1110001100001000",
+                "0100000000000000",
+                "1110110000010000",
+                "0000000000010001",
+                "1110001100001000",
+                "0000000000010001",
+                "1111110000100000",
+                "1110111010001000",
+                "0000000000010001",
+                "1111110000010000",
+                "0000000000100000",
+                "1110000010010000",
+                "0000000000010001",
+                "1110001100001000",
+                "0000000000010000",
+                "1111110010011000",
+                "0000000000001010",
+                "1110001100000001",
+                "0000000000010111",
                 "1110101010000111"
         );
     }

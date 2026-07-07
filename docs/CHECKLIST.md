@@ -54,7 +54,7 @@ Detalhes de execução: [`TESTES-NAND2TETRIS.md`](TESTES-NAND2TETRIS.md)
 | 17 | A | Main — CLI (`main`) | `MainTest.shouldWriteHackFile` | ✅ |
 | 18 | B | Integração — `Add.asm` | `AssemblerIntegrationTest.shouldAssembleAdd` | ✅ |
 | 19 | A | Integração — `Max.asm` + `MaxL.asm` | `shouldAssembleMax`, `shouldAssembleMaxL` | ✅ |
-| 20 | B | Integração — `Rect.asm` + fixes | `shouldAssembleRect` | ⬜ |
+| 20 | B | Integração — `Rect.asm` + fixes | `shouldAssembleRect` | ✅ |
 | 21 | A | Fix — ajustes pós-testes oficiais | testes que falharem | ⬜ |
 | 22 | B | Docs — README + link vídeo | revisão manual | ⬜ |
 
@@ -301,7 +301,7 @@ Detalhes de execução: [`TESTES-NAND2TETRIS.md`](TESTES-NAND2TETRIS.md)
 | Testes | `shouldAssembleRect` |
 | Validar | CPU Emulator |
 
-⬜
+✅
 
 ---
 
