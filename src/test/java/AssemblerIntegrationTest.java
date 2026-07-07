@@ -48,16 +48,28 @@ class AssemblerIntegrationTest {
 
     // --- commit 19 (A) ---
 
-    @Disabled("commit 19")
     @Test
-    void shouldAssembleMax() {
-        // projects/6/max/Max.asm
+    void shouldAssembleMax(@TempDir Path tempDir) throws IOException {
+        Path asmFile = copyProgramToTemp(tempDir, "Max.asm", NAND2TETRIS_PROJECT6.resolve("max/Max.asm"),
+                Path.of("nand2tetris/projects/6/max/Max.asm"));
+        Path hackFile = tempDir.resolve("Max.hack");
+
+        Main.assemble(asmFile);
+
+        assertTrue(Files.exists(hackFile));
+        assertEquals(expectedMaxBinary(), Files.readAllLines(hackFile));
     }
 
-    @Disabled("commit 19")
     @Test
-    void shouldAssembleMaxL() {
-        // projects/6/max/MaxL.asm — valida labels
+    void shouldAssembleMaxL(@TempDir Path tempDir) throws IOException {
+        Path asmFile = copyProgramToTemp(tempDir, "MaxL.asm", NAND2TETRIS_PROJECT6.resolve("max/MaxL.asm"),
+                Path.of("nand2tetris/projects/6/max/MaxL.asm"));
+        Path hackFile = tempDir.resolve("MaxL.hack");
+
+        Main.assemble(asmFile);
+
+        assertTrue(Files.exists(hackFile));
+        assertEquals(expectedMaxBinary(), Files.readAllLines(hackFile));
     }
 
     // --- commit 20 (B) ---
@@ -80,5 +92,26 @@ class AssemblerIntegrationTest {
         Path destination = tempDir.resolve(filename);
         Files.copy(source, destination, StandardCopyOption.REPLACE_EXISTING);
         return destination;
+    }
+
+    private static List<String> expectedMaxBinary() {
+        return List.of(
+                "0000000000000000",
+                "1111110000010000",
+                "0000000000000001",
+                "1111010011010000",
+                "0000000000001010",
+                "1110001100000001",
+                "0000000000000001",
+                "1111110000010000",
+                "0000000000001100",
+                "1110101010000111",
+                "0000000000000000",
+                "1111110000010000",
+                "0000000000000010",
+                "1110001100001000",
+                "0000000000001110",
+                "1110101010000111"
+        );
     }
 }
