@@ -42,6 +42,28 @@ public final class Code {
             Map.entry("D|M", "1010101")
     );
 
+    private static final Map<String, String> DEST = Map.ofEntries(
+            Map.entry("", "000"),
+            Map.entry("M", "001"),
+            Map.entry("D", "010"),
+            Map.entry("MD", "011"),
+            Map.entry("A", "100"),
+            Map.entry("AM", "101"),
+            Map.entry("AD", "110"),
+            Map.entry("AMD", "111")
+    );
+
+    private static final Map<String, String> JUMP = Map.ofEntries(
+            Map.entry("", "000"),
+            Map.entry("JGT", "001"),
+            Map.entry("JEQ", "010"),
+            Map.entry("JGE", "011"),
+            Map.entry("JLT", "100"),
+            Map.entry("JNE", "101"),
+            Map.entry("JLE", "110"),
+            Map.entry("JMP", "111")
+    );
+
     private Code() {
     }
 
@@ -54,11 +76,19 @@ public final class Code {
     }
 
     public static String dest(String mnemonic) {
-        throw new UnsupportedOperationException("TODO: implementar dest");
+        String bits = DEST.get(mnemonic);
+        if (bits == null) {
+            throw new IllegalArgumentException("Mnemônico dest desconhecido: " + mnemonic);
+        }
+        return bits;
     }
 
     public static String jump(String mnemonic) {
-        throw new UnsupportedOperationException("TODO: implementar jump");
+        String bits = JUMP.get(mnemonic);
+        if (bits == null) {
+            throw new IllegalArgumentException("Mnemônico jump desconhecido: " + mnemonic);
+        }
+        return bits;
     }
 
     public static String encodeAInstruction(String symbolOrValue, SymbolTable symbolTable) {

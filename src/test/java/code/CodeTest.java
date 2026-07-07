@@ -41,22 +41,25 @@ class CodeTest {
 
     // --- commit 11 (A) ---
 
-    @Disabled("commit 11")
     @Test
     void shouldEncodeDest() {
-        // dest("D") → "010", dest("AMD") → "111"
+        assertEquals("010", Code.dest("D"));
+        assertEquals("111", Code.dest("AMD"));
+        assertEquals("001", Code.dest("M"));
+        assertEquals("110", Code.dest("AD"));
     }
 
-    @Disabled("commit 11")
     @Test
     void shouldEncodeEmptyDest() {
-        // dest("") → "000"
+        assertEquals("000", Code.dest(""));
     }
 
-    @Disabled("commit 11")
     @Test
     void shouldEncodeJump() {
-        // jump("JGT") → "001", jump("JMP") → "111", jump("") → "000"
+        assertEquals("001", Code.jump("JGT"));
+        assertEquals("111", Code.jump("JMP"));
+        assertEquals("000", Code.jump(""));
+        assertEquals("010", Code.jump("JEQ"));
     }
 
     // --- commit 12 (B) ---
