@@ -96,7 +96,7 @@ public final class Code {
             throw new IllegalArgumentException("symbolOrValue não pode ser null");
         }
 
-        // Caso 12: valor numérico literal, por exemplo "@10" → "0000000000001010"
+        // Literais numéricos: "10" → 0000000000001010
         if (symbolOrValue.matches("\\d+")) {
             int value = Integer.parseInt(symbolOrValue);
             if (value < 0 || value > 0x7FFF) {
@@ -106,8 +106,24 @@ public final class Code {
             return String.format("%16s", bits).replace(' ', '0');
         }
 
-        // Símbolos (pré-definidos / labels / variáveis) serão implementados no próximo passo (commit 13).
-        throw new UnsupportedOperationException("encodeAInstruction simbólico ainda não implementado: " + symbolOrValue);
+        // Símbolos: se já existe na tabela, usa o endereço; senão aloca variável a partir de 16.
+        if (symbolTable == null) {
+            throw new IllegalArgumentException("SymbolTable requerida para resolução de símbolos");
+        }
+
+        int address;
+        if (symbolTable.contains(symbolOrValue)) {
+            Integer addr = symbolTable.getAddress(symbolOrValue);
+            if (addr == null) {
+                throw new IllegalStateException("Símbolo presente, mas sem endereço: " + symbolOrValue);
+            }
+            address = addr;
+        } else {
+            address = symbolTable.addVariable(symbolOrValue);
+        }
+
+        String bits = Integer.toBinaryString(address);
+        return String.format("%16s", bits).replace(' ', '0');
     }
 
     public static String encodeCInstruction(String destMnemonic, String compMnemonic, String jumpMnemonic) {

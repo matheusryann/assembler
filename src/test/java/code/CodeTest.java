@@ -79,22 +79,23 @@ class CodeTest {
 
     // --- commit 13 (B) ---
 
-    @Disabled("commit 13")
     @Test
     void shouldEncodePredefinedSymbol() {
-        // @SCREEN → 0100000000000000
+        symboltable.SymbolTable table = new symboltable.SymbolTable();
+        assertEquals("0100000000000000", Code.encodeAInstruction("SCREEN", table));
     }
-
-    @Disabled("commit 13")
     @Test
     void shouldEncodeLabel() {
-        // label LOOP=6 → 0000000000000110
+        symboltable.SymbolTable table = new symboltable.SymbolTable();
+        table.addEntry("LOOP", 6);
+        assertEquals("0000000000000110", Code.encodeAInstruction("LOOP", table));
     }
-
-    @Disabled("commit 13")
     @Test
     void shouldEncodeNewVariable() {
-        // variável nova → RAM 16+
+        symboltable.SymbolTable table = new symboltable.SymbolTable();
+        assertEquals("0000000000010000", Code.encodeAInstruction("i", table));
+        // chamada subsequente deve reutilizar o mesmo endereço
+        assertEquals("0000000000010000", Code.encodeAInstruction("i", table));
     }
 
     // --- commit 14 (A) ---
