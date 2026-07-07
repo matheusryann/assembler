@@ -64,16 +64,17 @@ class CodeTest {
 
     // --- commit 12 (B) ---
 
-    @Disabled("commit 12")
     @Test
     void shouldEncodeNumericAInstruction() {
-        // encodeAInstruction("10", table) → "0000000000001010"
+        symboltable.SymbolTable table = new symboltable.SymbolTable();
+        assertEquals("0000000000001010", Code.encodeAInstruction("10", table));
     }
-
-    @Disabled("commit 12")
     @Test
     void shouldPadTo16Bits() {
-        // sempre 16 caracteres, bit 15 = '0'
+        symboltable.SymbolTable table = new symboltable.SymbolTable();
+        String bits = Code.encodeAInstruction("2", table);
+        assertEquals(16, bits.length());
+        assertEquals('0', bits.charAt(0));
     }
 
     // --- commit 13 (B) ---

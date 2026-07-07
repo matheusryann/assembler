@@ -92,7 +92,22 @@ public final class Code {
     }
 
     public static String encodeAInstruction(String symbolOrValue, SymbolTable symbolTable) {
-        throw new UnsupportedOperationException("TODO: implementar encodeAInstruction");
+        if (symbolOrValue == null) {
+            throw new IllegalArgumentException("symbolOrValue não pode ser null");
+        }
+
+        // Caso 12: valor numérico literal, por exemplo "@10" → "0000000000001010"
+        if (symbolOrValue.matches("\\d+")) {
+            int value = Integer.parseInt(symbolOrValue);
+            if (value < 0 || value > 0x7FFF) {
+                throw new IllegalArgumentException("Valor fora do alcance para A-instruction: " + value);
+            }
+            String bits = Integer.toBinaryString(value);
+            return String.format("%16s", bits).replace(' ', '0');
+        }
+
+        // Símbolos (pré-definidos / labels / variáveis) serão implementados no próximo passo (commit 13).
+        throw new UnsupportedOperationException("encodeAInstruction simbólico ainda não implementado: " + symbolOrValue);
     }
 
     public static String encodeCInstruction(String destMnemonic, String compMnemonic, String jumpMnemonic) {
