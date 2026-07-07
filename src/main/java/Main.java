@@ -1,4 +1,5 @@
 import java.io.IOException;
+import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.List;
@@ -16,8 +17,20 @@ public class Main {
 
     // TODO: implementar (commit 7)
 
-    public static void assemble(Path inputFile) {
-        throw new UnsupportedOperationException("TODO: implementar assemble");
+    public static void assemble(Path inputFile) throws IOException {
+        SymbolTable symbolTable = new SymbolTable();
+        collectLabels(inputFile, symbolTable);
+        List<String> binaryLines = generateCode(inputFile, symbolTable);
+        Files.write(inputFile.resolveSibling(outputFilename(inputFile)), binaryLines);
+    }
+
+    private static String outputFilename(Path inputFile) {
+        String filename = inputFile.getFileName().toString();
+        int dotIndex = filename.lastIndexOf('.');
+        if (dotIndex < 0) {
+            return filename + ".hack";
+        }
+        return filename.substring(0, dotIndex) + ".hack";
     }
 
     public static List<String> generateCode(Path inputFile, SymbolTable symbolTable) throws IOException {
@@ -71,7 +84,11 @@ public class Main {
             System.exit(1);
         }
 
-        System.err.println("Montador ainda não implementado. Veja docs/CHECKLIST.md");
-        System.exit(1);
+        try {
+            assemble(Path.of(args[0]));
+        } catch (IOException e) {
+            System.err.println("Erro ao montar arquivo: " + e.getMessage());
+            System.exit(1);
+        }
     }
 }

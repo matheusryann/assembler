@@ -1,5 +1,5 @@
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.io.TempDir;
 
 /**
  * Testes unitários do Main — passagens 1 e 2 (ver docs/CHECKLIST.md).
@@ -42,9 +42,29 @@ class MainTest {
 
     // --- commit 17 (A) ---
 
-    @Disabled("commit 17")
     @Test
-    void shouldWriteHackFileToDisk() {
-        // assemble(path) cria arquivo .hack no mesmo diretório
+    void shouldWriteHackFileToDisk(@TempDir java.nio.file.Path tempDir) {
+        java.nio.file.Path asmFile = tempDir.resolve("Add.asm");
+        java.nio.file.Path hackFile = tempDir.resolve("Add.hack");
+
+        try {
+            java.nio.file.Files.write(asmFile, java.util.List.of(
+                    "@0",
+                    "D=M",
+                    "@1",
+                    "D=D+M",
+                    "@2",
+                    "M=D"
+            ));
+
+            Main.assemble(asmFile);
+
+            java.util.List<String> lines = java.nio.file.Files.readAllLines(hackFile);
+            org.junit.jupiter.api.Assertions.assertEquals(6, lines.size());
+            org.junit.jupiter.api.Assertions.assertEquals("0000000000000000", lines.get(0));
+            org.junit.jupiter.api.Assertions.assertEquals("1110001100001000", lines.get(5));
+        } catch (java.io.IOException e) {
+            throw new RuntimeException(e);
+        }
     }
 }
