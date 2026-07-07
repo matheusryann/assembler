@@ -52,7 +52,7 @@ Detalhes de execução: [`TESTES-NAND2TETRIS.md`](TESTES-NAND2TETRIS.md)
 | 15 | B | Main — passagem 1 (labels) | `MainTest.shouldCollectLabels` | ✅ |
 | 16 | A | Main — passagem 2 (gerar `.hack`) | `MainTest.shouldGenerateBinaryLines` | ✅ |
 | 17 | A | Main — CLI (`main`) | `MainTest.shouldWriteHackFile` | ✅ |
-| 18 | B | Integração — `Add.asm` | `AssemblerIntegrationTest.shouldAssembleAdd` | ⬜ |
+| 18 | B | Integração — `Add.asm` | `AssemblerIntegrationTest.shouldAssembleAdd` | ✅ |
 | 19 | A | Integração — `Max.asm` + `MaxL.asm` | `shouldAssembleMax`, `shouldAssembleMaxL` | ⬜ |
 | 20 | B | Integração — `Rect.asm` + fixes | `shouldAssembleRect` | ⬜ |
 | 21 | A | Fix — ajustes pós-testes oficiais | testes que falharem | ⬜ |
@@ -277,7 +277,7 @@ Detalhes de execução: [`TESTES-NAND2TETRIS.md`](TESTES-NAND2TETRIS.md)
 | Testes | `AssemblerIntegrationTest.shouldAssembleAdd` |
 | Validar | `mvn test -Dtest=AssemblerIntegrationTest#shouldAssembleAdd` + CPU Emulator |
 
-⬜
+✅
 
 ---
 
