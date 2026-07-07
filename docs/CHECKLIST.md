@@ -49,8 +49,8 @@ Detalhes de execução: [`TESTES-NAND2TETRIS.md`](TESTES-NAND2TETRIS.md)
 | 12 | B | Code — `encodeAInstruction` (números) | `shouldEncodeNumericA` | ✅ |
 | 13 | B | Code — `encodeAInstruction` (símbolos) | `shouldEncodePredefinedAndVariable` | ✅ |
 | 14 | A | Code — `encodeCInstruction` | `shouldEncodeFullCInstruction` | ⬜ |
-| 15 | B | Main — passagem 1 (labels) | `MainTest.shouldCollectLabels` | ⬜ |
-| 16 | A | Main — passagem 2 (gerar `.hack`) | `MainTest.shouldGenerateBinaryLines` | ⬜ |
+| 15 | B | Main — passagem 1 (labels) | `MainTest.shouldCollectLabels` | ✅ |
+| 16 | A | Main — passagem 2 (gerar `.hack`) | `MainTest.shouldGenerateBinaryLines` | ✅ |
 | 17 | A | Main — CLI (`main`) | `MainTest.shouldWriteHackFile` | ⬜ |
 | 18 | B | Integração — `Add.asm` | `AssemblerIntegrationTest.shouldAssembleAdd` | ⬜ |
 | 19 | A | Integração — `Max.asm` + `MaxL.asm` | `shouldAssembleMax`, `shouldAssembleMaxL` | ⬜ |
@@ -241,7 +241,7 @@ Detalhes de execução: [`TESTES-NAND2TETRIS.md`](TESTES-NAND2TETRIS.md)
 | Testes | `MainTest.shouldCollectLabelsFromMaxL` |
 | Validar | `mvn test -Dtest=MainTest#shouldCollect*` |
 
-⬜
+✅
 
 ---
 
@@ -253,7 +253,7 @@ Detalhes de execução: [`TESTES-NAND2TETRIS.md`](TESTES-NAND2TETRIS.md)
 | Testes | `MainTest.shouldGenerateBinaryForAdd` |
 | Validar | `mvn test -Dtest=MainTest#shouldGenerate*` |
 
-⬜
+✅
 
 ---
 
