@@ -100,21 +100,18 @@ class CodeTest {
 
     // --- commit 14 (A) ---
 
-    @Disabled("commit 14")
     @Test
     void shouldEncodeDM() {
-        // D=M → 1111110000010000
+        assertEquals("1111110000010000", Code.encodeCInstruction("D", "M", ""));
     }
 
-    @Disabled("commit 14")
     @Test
     void shouldEncodeMD() {
-        // M=D → 1110001100001000
+        assertEquals("1110001100001000", Code.encodeCInstruction("M", "D", ""));
     }
 
-    @Disabled("commit 14")
     @Test
     void shouldEncodeDJump() {
-        // D;JGT → 1110001100000001
+        assertEquals("1110001100000001", Code.encodeCInstruction("", "D", "JGT"));
     }
 }

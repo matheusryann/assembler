@@ -46,8 +46,8 @@ Detalhes de execução: [`TESTES-NAND2TETRIS.md`](TESTES-NAND2TETRIS.md)
 | 9 | B | Parser — `dest` / `comp` / `jump` | `shouldParseCInstructionParts` | ✅ |
 | 10 | A | Code — tabela `comp` | `CodeTest` → `shouldEncodeComp` | ✅ |
 | 11 | A | Code — tabelas `dest` e `jump` | `shouldEncodeDest`, `shouldEncodeJump` | ✅ |
-| 12 | B | Code — `encodeAInstruction` (números) | `shouldEncodeNumericA` | ⬜ |
-| 13 | B | Code — `encodeAInstruction` (símbolos) | `shouldEncodePredefinedAndVariable` | ⬜ |
+| 12 | B | Code — `encodeAInstruction` (números) | `shouldEncodeNumericA` | ✅ |
+| 13 | B | Code — `encodeAInstruction` (símbolos) | `shouldEncodePredefinedAndVariable` | ✅ |
 | 14 | A | Code — `encodeCInstruction` | `shouldEncodeFullCInstruction` | ⬜ |
 | 15 | B | Main — passagem 1 (labels) | `MainTest.shouldCollectLabels` | ⬜ |
 | 16 | A | Main — passagem 2 (gerar `.hack`) | `MainTest.shouldGenerateBinaryLines` | ⬜ |
@@ -204,7 +204,7 @@ Detalhes de execução: [`TESTES-NAND2TETRIS.md`](TESTES-NAND2TETRIS.md)
 | Testes | `shouldEncodeNumericAInstruction`, `shouldPadTo16Bits` |
 | Validar | `mvn test -Dtest=CodeTest#shouldEncodeNumeric*` |
 
-⬜
+✅
 
 ---
 
@@ -216,7 +216,7 @@ Detalhes de execução: [`TESTES-NAND2TETRIS.md`](TESTES-NAND2TETRIS.md)
 | Testes | `shouldEncodePredefinedSymbol`, `shouldEncodeLabel`, `shouldEncodeNewVariable` |
 | Validar | `mvn test -Dtest=CodeTest#shouldEncodePredefined*`, `#shouldEncodeLabel*`, `#shouldEncodeNew*` |
 
-⬜
+✅
 
 ---
 

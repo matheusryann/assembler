@@ -127,6 +127,12 @@ public final class Code {
     }
 
     public static String encodeCInstruction(String destMnemonic, String compMnemonic, String jumpMnemonic) {
-        throw new UnsupportedOperationException("TODO: implementar encodeCInstruction");
+        if (compMnemonic == null) {
+            throw new IllegalArgumentException("compMnemonic não pode ser null");
+        }
+        String compBits = comp(compMnemonic);
+        String destBits = dest(destMnemonic == null ? "" : destMnemonic);
+        String jumpBits = jump(jumpMnemonic == null ? "" : jumpMnemonic);
+        return "111" + compBits + destBits + jumpBits;
     }
 }
