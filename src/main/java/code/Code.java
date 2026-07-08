@@ -7,7 +7,6 @@ import symboltable.SymbolTable;
 /**
  * Encoding binário de instruções Hack (16 bits).
  *
- * @see docs/GUIA-MONTADOR.md
  */
 public final class Code {
 

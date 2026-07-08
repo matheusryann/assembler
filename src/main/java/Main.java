@@ -11,7 +11,6 @@ import symboltable.SymbolTable;
 /**
  * Orquestrador do montador — duas passagens sobre o arquivo .asm.
  *
- * @see docs/GUIA-MONTADOR.md
  */
 public class Main {
 

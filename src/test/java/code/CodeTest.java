@@ -6,7 +6,7 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 /**
- * Testes unitários — um método por commit (ver docs/CHECKLIST.md).
+ * Testes unitários do encoding Hack.
  */
 class CodeTest {
 

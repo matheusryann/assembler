@@ -14,7 +14,6 @@ import org.junit.jupiter.api.io.TempDir;
 /**
  * Testes de integração com arquivos oficiais Nand2Tetris Project 06.
  *
- * @see docs/TESTES-NAND2TETRIS.md
  */
 class AssemblerIntegrationTest {
     private static final Path NAND2TETRIS_PROJECT6 = Path.of(System.getenv().getOrDefault(

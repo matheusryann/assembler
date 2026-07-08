@@ -9,7 +9,6 @@ import java.util.List;
 /**
  * Analisador de arquivos .asm.
  *
- * @see docs/GUIA-MONTADOR.md
  */
 public class Parser {
 

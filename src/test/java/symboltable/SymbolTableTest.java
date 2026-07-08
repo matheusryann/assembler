@@ -9,7 +9,7 @@ import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 /**
- * Testes unitários — um método por commit (ver docs/CHECKLIST.md).
+ * Testes unitários da tabela de símbolos.
  */
 class SymbolTableTest {
 

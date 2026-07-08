@@ -12,7 +12,7 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 /**
- * Testes unitários — um método por commit (ver docs/CHECKLIST.md).
+ * Testes unitários do parser Hack.
  */
 class ParserTest {
 

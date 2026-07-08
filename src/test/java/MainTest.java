@@ -2,7 +2,7 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
 
 /**
- * Testes unitários do Main — passagens 1 e 2 (ver docs/CHECKLIST.md).
+ * Testes unitários do Main — passagens 1 e 2.
  */
 class MainTest {
 

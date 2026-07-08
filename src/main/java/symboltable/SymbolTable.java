@@ -6,7 +6,6 @@ import java.util.Map;
 /**
  * Tabela de símbolos: rótulos, variáveis e predefinidos.
  *
- * @see docs/GUIA-MONTADOR.md
  */
 public class SymbolTable {
 
