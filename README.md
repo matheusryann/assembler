@@ -144,4 +144,4 @@ como o CPU Emulator, mas nao faz parte da entrega versionada do projeto.
 
 ## Video de apresentacao
 
-Link do video: [preencher link]
+[Link do video: \[preencher link\]](https://drive.google.com/file/d/1JlmkqFsKoHAuWpXISYaU8lsvPH8ou0bi/view?usp=drive_link)

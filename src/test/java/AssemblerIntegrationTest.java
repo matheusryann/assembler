@@ -7,7 +7,6 @@ import java.nio.file.Path;
 import java.nio.file.StandardCopyOption;
 import java.util.List;
 
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
 
@@ -83,12 +82,6 @@ class AssemblerIntegrationTest {
 
         assertTrue(Files.exists(hackFile));
         assertEquals(expectedRectBinary(), Files.readAllLines(hackFile));
-    }
-
-    @Disabled("commit 20 — opcional")
-    @Test
-    void shouldAssemblePong() {
-        // projects/6/pong/Pong.asm
     }
 
     private static Path copyProgramToTemp(Path tempDir, String filename, Path officialPath, Path fallbackPath)
